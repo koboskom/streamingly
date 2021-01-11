@@ -1,0 +1,4 @@
+mysql_pass="*iQj6EoUrNY8pta4CPF6GgLzwnRKDm"
+mysql_addr="127.0.0.1"
+mysql_user="streamingly"
+mysql_port=3306
