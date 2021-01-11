@@ -1,0 +1,132 @@
+.footer {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    padding: 8px;
+    height:  auto;
+    width: 100%;
+    background-color: #282828;
+  }
+  
+  .footer__right * .MuiSlider-root {
+    color: #7000a8;
+  }
+  .footer__left {
+    display: flex;
+    flex:0.3;
+    align-items: center;
+    color: white;
+    width: 300px;
+    flex: auto;
+  }
+  
+  .repeat {
+    color: #7000a8;
+  }
+  .active{
+    color:white;
+  }
+  .random {
+    color: white;
+  }
+  .ractive{
+    color:#7000a8;
+  }
+  .footer__center {
+    flex: 0.4;
+    max-width: 300px;
+
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 150px;
+  }
+  
+  .footer__icon__play{
+    width: 44px !important;
+    height: 44px !important;
+    
+  }
+  
+  .footer__icon:hover,
+  .footer__icon__play:hover,
+  .repeat:hover,
+  .random:hover {
+    transition: transform 0.2s ease-in-out;
+    transform: scale(1.2) !important;
+  }
+  
+  .footer__right {
+    display: flex;
+    flex:0.3;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    flex: auto;
+    margin-right: 50px;
+  }
+
+  
+  .footer__albumLogo {
+    height: 90px;
+    width: 90px;
+    margin-right: 20px;
+    object-fit: contain;
+  }
+  
+  .footer__songInfo > h4 {
+    margin-bottom: 5px;
+  }
+  
+  .footer__songInfo > p {
+    font-size: 12px;
+  }
+  .progressb {
+    display: flex;
+   
+    justify-content: space-evenly;
+    align-items: center;
+   
+  }
+  .currentT, .totalT {
+    width: 35px;
+    padding: 2px;
+    
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 70%;
+  }
+  
+  input[type=range]:focus {
+    outline: none;
+  }
+  
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #9702e2;
+    border-radius: 5px;
+    border: 0px solid #000000;
+  }
+  
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 1px #000000;
+    border: 0px solid #000000;
+    height: 13px;
+    width: 6px;
+    border-radius: 50px;
+    background: #7000a8;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px;
+  }
+  
+  

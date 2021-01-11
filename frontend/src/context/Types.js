@@ -1,0 +1,8 @@
+export const SET_CURRENT_SONG = 'SET_CURRENT_SONG'
+export const TOGGLE_RANDOM = 'TOGGLE_RANDOM'
+export const TOGGLE_REPEAT = 'TOGGLE_OPTIONS'
+export const TOGGLE_PLAYING = 'TOGGLE_PLAYING'
+export const SET_SONGS = 'SET_SONGS'
+export const SET_ARTIST = 'SET_ARTIST'
+export const SET_ALBUM = 'SET_ALBUM'
+export const SET_TEMP_SONGS = 'SET_TEMP_SONGS'
