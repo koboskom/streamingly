@@ -7,6 +7,7 @@ import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import "./Player.css";
 import { Grid } from "@material-ui/core";
 import PlayerContext from '../context/PlayerContext'
+import axios from 'axios'
 
 function Player(props) {
   const {
@@ -20,6 +21,7 @@ function Player(props) {
     toggleRandom,
     togglePlaying,
     handleEnd,
+    setAlbum
     
 
   } = useContext(PlayerContext)
@@ -36,6 +38,18 @@ function Player(props) {
   const toggleAudio = () => audio.current.paused ? audio.current.play() : audio.current.pause();
 
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        "https://g17.labagh.pl/api/albums?limit=1000&offset=0",
+      );
+ 
+      setAlbum(result.data);
+      
+    };
+ 
+    fetchData();
+  },[]);
 
   const handleProgress = (e) => {
     let compute = (e.target.value * dur) / 100;
