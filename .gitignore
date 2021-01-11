@@ -1,3 +1,9 @@
 out
 release
 .rustc_info.json
+package-lock.json
+.eslintcache
+asset-manifest.json
+**/build
+**/node_modules
+.vscode

@@ -2,12 +2,36 @@
 
 The site is currently hosted on https://g17.labagh.pl/
 
-# Required installations in your react folder
+## Requirements
+- mySQL database named streamingly
+
+- `rustup` and `cargo`
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-npm install --save-dev gulp gulp-inline-source gulp-replace
+
+- `node` and `npm`\
+refer to [this](https://nodejs.org/en/download/)
+
+- npm dependencies
+```bash
+cd frontend
+npm install
 ```
-# Deploy to build folder
+
+## Build
+To build project run make at the root directory
+```bash
+make
 ```
-npm run build
-npx gulp
+
+## Run
+To start streamingly server run:
+```bash
+make run
 ```
+
+## Advanced
+To configure output directory change `OUT_DIR` in Makefile.\
+Currently you can only specify database username and password in rust code\
+// TODO(pixsll): Create config file to tweak backend parameters

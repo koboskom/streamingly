@@ -14,8 +14,10 @@ backend: env
 	mv ${BUILD}/streamingly ${OUT_DIR}/
 
 frontend: env
-	cp frontend/build/index.html out/static/
-	cp frontend/build/manifest.json out/static/
+	npm run build --prefix frontend
+	cd frontend && npx gulp
+	cp frontend/build/index.html ${OUT_DIR}/static/
+	cp frontend/build/manifest.json ${OUT_DIR}/static/
 
 run: all
 	cd ${OUT_DIR}
