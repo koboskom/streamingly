@@ -39,3 +39,7 @@ Currently you can only specify database username and password in rust code\
 ## Demo
 
 ![](/photos/menu.png)
+![](/photos/albums.png)
+![](/photos/genres.png)
+![](/photos/artists.png)
+![](/photos/albumsins.png)
