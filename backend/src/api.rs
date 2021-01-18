@@ -77,15 +77,17 @@ async fn songs(req: HttpRequest, query: web::Query<HashMap<String, String>>) -> 
                 a.id,
                 a.name
             FROM
-                songs as s,
-                song_genre as sg,
-                genres as g,
-                song_artist as sa,
-                artists as a
+                songs as s
+            INNER JOIN song_genre as sg
+                ON s.id = sg.song_id
+            INNER JOIN song_artist as sa
+                ON s.id = sa.song_id
+            INNER JOIN genres as g
+                ON g.id = sg.genre_id
+            INNER JOIN artists as a
+                ON a.id = sa.artist_id
             WHERE
-                s.id = ? and
-                sg.song_id = s.id and sg.genre_id = g.id and
-                sa.song_id = s.id and sa.artist_id = a.id;").unwrap();
+                s.id = ?;").unwrap();
         conn.exec(stmt, (id,)).unwrap()
     } else {
         let stmt = conn.prep("WITH songs_ids as (
@@ -106,16 +108,19 @@ async fn songs(req: HttpRequest, query: web::Query<HashMap<String, String>>) -> 
                 a.id,
                 a.name
             FROM
-                songs as s,
-                song_genre as sg,
-                genres as g,
-                song_artist as sa,
-                artists as a,
-                songs_ids as si
+                songs as s
+            INNER JOIN song_genre as sg
+                ON s.id = sg.song_id
+            INNER JOIN song_artist as sa
+                ON s.id = sa.song_id
+            INNER JOIN genres as g
+                ON g.id = sg.genre_id
+            INNER JOIN artists as a
+                ON a.id = sa.artist_id
+            INNER JOIN songs_ids as si
+                ON s.id = si.id
             WHERE
-                si.id = s.id and si.num > ? and si.num <= ? and
-                sg.song_id = s.id and sg.genre_id = g.id and
-                sa.song_id = s.id and sa.artist_id = a.id;").unwrap();
+                si.num > ? and si.num <= ?;").unwrap();
         conn.exec(stmt, (offset, limit+offset)).unwrap()
     };
     let songs = parse_songs(output);
@@ -157,7 +162,7 @@ async fn albums_songs(req: HttpRequest, query: web::Query<HashMap<String, String
     get_limit_and_offset!(query, limit, offset);
     get_db_conn!(conn, req);
 
-    let stmt = conn.prep("WITH songs_nums as (
+    let stmt = conn.prep("WITH songs_ids as (
         SELECT
             id,
             ROW_NUMBER() OVER(ORDER BY id) as num
@@ -177,16 +182,19 @@ async fn albums_songs(req: HttpRequest, query: web::Query<HashMap<String, String
             a.id,
             a.name
         FROM
-            songs as s,
-            song_genre as sg,
-            genres as g,
-            song_artist as sa,
-            artists as a,
-            songs_nums as sn
+            songs as s
+        INNER JOIN song_genre as sg
+            ON s.id = sg.song_id
+        INNER JOIN song_artist as sa
+            ON s.id = sa.song_id
+        INNER JOIN genres as g
+            ON g.id = sg.genre_id
+        INNER JOIN artists as a
+            ON a.id = sa.artist_id
+        INNER JOIN songs_ids as si
+            ON s.id = si.id
         WHERE
-            sn.id = s.id and sn.num > ? and sn.num <= ? and
-            sg.song_id = s.id and sg.genre_id = g.id and
-            sa.song_id = s.id and sa.artist_id = a.id;").unwrap();
+            si.num > ? and si.num <= ?;").unwrap();
     let songs = parse_songs(conn.exec(stmt, (album_id, offset, limit+offset)).unwrap());
     HttpResponse::Ok().json(songs)
 }
@@ -217,16 +225,19 @@ async fn artists_songs(req: HttpRequest, query: web::Query<HashMap<String, Strin
             a.id,
             a.name
         FROM
-            songs as s,
-            song_genre as sg,
-            genres as g,
-            song_artist as sa,
-            artists as a,
-            songs_ids as si
+            songs as s
+        INNER JOIN song_genre as sg
+            ON s.id = sg.song_id
+        INNER JOIN song_artist as sa
+            ON s.id = sa.song_id
+        INNER JOIN genres as g
+            ON g.id = sg.genre_id
+        INNER JOIN artists as a
+            ON a.id = sa.artist_id
+        INNER JOIN songs_ids as si
+            ON s.id = si.id
         WHERE
-            si.id = s.id and si.num > ? and si.num <= ? and
-            sg.song_id = s.id and sg.genre_id = g.id and
-            sa.song_id = s.id and sa.artist_id = a.id;").unwrap();
+            si.num > ? and si.num <= ?;").unwrap();
     let songs = parse_songs(conn.exec(stmt, (artist_id, offset, limit+offset)).unwrap());
     HttpResponse::Ok().json(songs)
 }
@@ -257,16 +268,19 @@ async fn genres_songs(req: HttpRequest, query: web::Query<HashMap<String, String
             a.id,
             a.name
         FROM
-            songs as s,
-            song_genre as sg,
-            genres as g,
-            song_artist as sa,
-            artists as a,
-            songs_ids as si
+            songs as s
+        INNER JOIN song_genre as sg
+            ON s.id = sg.song_id
+        INNER JOIN song_artist as sa
+            ON s.id = sa.song_id
+        INNER JOIN genres as g
+            ON g.id = sg.genre_id
+        INNER JOIN artists as a
+            ON a.id = sa.artist_id
+        INNER JOIN songs_ids as si
+            ON s.id = si.id
         WHERE
-            si.id = s.id and si.num > ? and si.num <= ? and
-            sg.song_id = s.id and sg.genre_id = g.id and
-            sa.song_id = s.id and sa.artist_id = a.id;").unwrap();
+            si.num > ? and si.num <= ?;").unwrap();
     let songs = parse_songs(conn.exec(stmt, (genre_id, offset, limit+offset)).unwrap());
     HttpResponse::Ok().json(songs)
 }
