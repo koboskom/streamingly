@@ -38,4 +38,4 @@ Currently you can only specify database username and password in rust code\
 
 ## Demo
 
-![alt text](https://github.com/koboskom/streamingly/tree/main/photos/menu.png)
+![](/photos/menu.png)
