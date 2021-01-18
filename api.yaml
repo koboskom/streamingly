@@ -1,0 +1,447 @@
+swagger: '2.0'
+info:
+  description: |
+    This is streamingly API docs
+  version: '0.3'
+  title: Streamingly
+paths:
+  /artists:
+    get:
+      tags:
+      - artists
+      summary: Show all artists
+      produces:
+      - application/json
+      parameters:
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Artists'
+  /artists/{id}:
+    get:
+      tags:
+      - artists
+      summary: Show artist
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of desired artist
+        required: true
+        type: integer
+        format: int64
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Artist'
+        400:
+          description: Nonexistent id or not a number
+  /artists/{id}/songs:
+    get:
+      tags:
+      - artists
+      summary: Show all artist's songs
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of desired artist
+        required: true
+        type: integer
+        format: int64
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Songs'
+        400:
+          description: Nonexistent id or not a number
+  /genres:
+    get:
+      tags:
+      - genres
+      summary: Show all genres
+      produces:
+      - application/json
+      parameters:
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Genres'
+  /genres/{id}:
+    get:
+      tags:
+      - genres
+      summary: Show genre
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of desired artist
+        required: true
+        type: integer
+        format: int64
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Genre'
+        400:
+          description: Nonexistent id or not a number
+  /genres/{id}/songs:
+    get:
+      tags:
+      - genres
+      summary: Show all songs from genre
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of desired genre
+        required: true
+        type: integer
+        format: int64
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Songs'
+        400:
+          description: Nonexistent id or not a number
+  /albums:
+    get:
+      tags:
+      - albums
+      summary: Show all albums
+      produces:
+      - application/json
+      parameters:
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Albums'
+  /albums/{id}:
+    get:
+      tags:
+      - albums
+      summary: Show album
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of desired album
+        required: true
+        type: integer
+        format: int64
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Album'
+        400:
+          description: Nonexistent id or not a number
+  /albums/{id}/songs:
+    get:
+      tags:
+      - albums
+      summary: Show all songs from album
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of desired artist
+        required: true
+        type: integer
+        format: int64
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Songs'
+        400:
+          description: Nonexistent id or not a number
+  /songs:
+    get:
+      tags:
+      - songs
+      summary: Show all songs
+      produces:
+      - application/json
+      parameters:
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Songs'
+  /songs/{id}/:
+    get:
+      tags:
+      - songs
+      summary: Show sepecific song
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of desired artist
+        required: true
+        type: integer
+        format: int64
+      - name: limit
+        in: query
+        description: Max number of returned elements
+        default: 5
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: Number of skipped elements
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Everything ok
+          schema:
+            $ref: '#/definitions/Song'
+        400:
+          description: Nonexistent id or not a number
+# Added by API Auto Mocking Plugin
+# host: g17.labagh.pl
+# basePath: /api
+definitions:
+  Artist:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: id of artist
+      name:
+        type: string
+        description: artist's name
+      media:
+        type: integer
+        description: media id used to fetch artist's image
+    example:
+      id: 3
+      name: "Derek Clegg"
+      media: 20
+  Artists:
+    type: array
+    items:
+      $ref: '#/definitions/Artist'
+  Album:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: id of album
+      name:
+        type: string
+        description: albums's name
+      media:
+        type: integer
+        description: media id used to fetch albums's cover image
+    example:
+      id: 2
+      name: "Prisma"
+      media: 11
+  Albums:
+    type: array
+    items:
+      $ref: '#/definitions/Album'
+  Genre:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: id of genre
+      name:
+        type: string
+        description: genre's name
+    example:
+      id: 2
+      name: "rock"
+  Genres:
+    type: array
+    items:
+      $ref: '#/definitions/Genre'
+  Song:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: id of a song
+      album_id:
+        type: integer
+        description: id of an album containing this song
+      title:
+        type: string
+        description: song's title
+      filetype:
+        type: string
+        description: sons's filetype, relevant when fetching the media
+      media:
+        type: integer
+        description: Media id used for fetching song's file
+      genres:
+        type: array
+        items:
+          type: array
+          items:
+            type: integer
+          minItems: 2
+          maxItems: 2
+          description: 2 element array [id, name]
+      artists:
+        type: array
+        items:
+          type: array
+          items:
+            type: string
+          minItems: 2
+          maxItems: 2
+          description: 2 element array [id, name]
+    required:
+      - id
+      - album_id
+      - title
+      - filetype
+      - media
+      - genres
+      - artists
+    example:
+      id: 19
+      album_id: 3
+      title: "Exist"
+      filetype: "mp3"
+      media: 17
+      genres: [["2", "rock"]]
+      artists: [["3", "Derek Clegg"]]
+  Songs:
+    type: array
+    items:
+      $ref: '#/definitions/Song'
+host: g17.labagh.pl
+basePath: /api
+schemes:
+ - https
