@@ -35,3 +35,7 @@ make run
 To configure output directory change `OUT_DIR` in Makefile.\
 Currently you can only specify database username and password in rust code\
 // TODO(pixsll): Create config file to tweak backend parameters
+
+##Demo
+
+![alt text](https://github.com/koboskom/streamingly/tree/main/photos/menu.png?raw=true)
